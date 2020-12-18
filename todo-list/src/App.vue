@@ -3,12 +3,14 @@
     <Header></Header>
 
     <h2>{{ title }}</h2>
-    <div>
-      <input v-model="newTaskName" @keyup.enter="AddNewTask" type="text" />
-      <b-button variant="danger" @click="AddNewTask()">Añadir</b-button>
-
-      <p></p>
-    </div>
+    <b-row >
+      <NewTaskInput @newTask="AddNewTask"></NewTaskInput>
+      <!-- <b-col cols="8">
+      <b-form-input v-model="newTaskName" @keyup.enter="AddNewTask" type="text" />
+      <b-button variant="succes" @click="AddNewTask()">Añadir</b-button>
+      </b-col>
+      <p></p> -->
+    </b-row>
 
     <div>
       <Todoitem 
@@ -78,9 +80,9 @@ export default {
      newTaskName:'',
      title: 'Mi primera aplicacion en Vue',
      tasks: [
-       { id: 0, completed: false, name: 'Crear aplicacion'},
-       { id: 1, completed: false, name: 'Publicarla'},
-       { id: 2, completed: false, name: 'Hacerme rico!'}
+       { id: 0, completed: false, name: 'Crear aplicacion', dueDate:''},
+       { id: 1, completed: false, name: 'Publicarla', dueDate:''},
+       { id: 2, completed: false, name: 'Hacerme rico!', dueDate:''}
      ]
     }
   }
