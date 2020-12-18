@@ -11,11 +11,19 @@
     </div>
 
     <div>
-      <div @click="markAsDone(task.id)" v-for="task in tasks" :key="task.id">
+      <Todoitem 
+      v-for="task in tasks"
+      :key="task.id"
+      :item="task"
+      @deleted='removeElement'>
+      </Todoitem>
+
+      
+      <!-- <div @click="markAsDone(task.id)" v-for="task in tasks" :key="task.id">
         <div v-if="!task.completed">{{ task.name }}</div>
         <div class="done" v-if="task.completed">{{ task.name }}</div>
         <button @click="removeElement(task.id)">Eliminar</button>
-      </div>
+      </div> -->
     </div>
 
     <p></p>
@@ -28,13 +36,15 @@
 import Footer from './components/Footer.vue'
 // import HelloWorld from './components/HelloWorld.vue'
 import Header from './components/Header.vue'
+import Todoitem from './components/Todoitem.vue'
 
 export default {
   name: 'App',
   components: {
   //  HelloWorld,
     Header,
-    Footer
+    Footer,
+    Todoitem
   },
   methods:{
     AddNewTask(){   
@@ -55,6 +65,7 @@ export default {
       }
     },
     removeElement(id){
+      console.log(`eliminar ${id}`)
       for (let i=0; i<this.tasks.length; i++){
         if(this.tasks[i].id === id){
         this.tasks.splice(i,1)
